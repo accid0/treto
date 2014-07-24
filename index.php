@@ -97,11 +97,11 @@ class File {
     foreach($data as $url){
       $url                            = trim($url);
       $name                           = $this->path . md5($url) . self::ATTR_EXT;
-      $raw                            = file_get_contents($url);
+      $raw                            = @file_get_contents($url);
       if(empty($raw)){
         continue;
       }
-      $src                            = imagecreatefromstring($raw);
+      $src                            = @imagecreatefromstring($raw);
       if(!$src){
         continue;
       }
@@ -118,10 +118,9 @@ class File {
 
   public function render(){
     $dir                              = opendir($this->path);
-    $file                             = [];
     $template                         = [];
-    $match;
     while(($path = readdir($dir)) && ('.' !== $path) && ('..' !== $path)){
+      echo $path, PHP_EOL;
       $template[]                     = str_ireplace(self::ATTR_INDENT, self::ATTR_IMG_DIR . $path, self::ATTR_TEMPLATE);
     }
     return empty($file) ? '' : implode('', $template);
