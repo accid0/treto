@@ -115,10 +115,10 @@ class File {
       while($data = fread($sock, 1024)){
         $raw                          .= $data;
       }
-
+      var_dump($req, $raw);
       //$url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
       //$raw                            = file_get_contents('http://91.228.154.101');
-      echo strlen($raw), PHP_EOL;
+      //echo strlen($raw), PHP_EOL;
       if(empty($raw)){
         continue;
       }
