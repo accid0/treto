@@ -94,6 +94,7 @@ class File {
     }
     $data                             = file($_FILES['list']['tmp_name']);
     $label                            = $_REQUEST['label'];
+    var_dump($data);
     foreach($data as $url){
       $url                            = trim($url);
       $name                           = $this->path . md5($url);
