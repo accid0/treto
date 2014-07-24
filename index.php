@@ -95,6 +95,7 @@ class File {
     $data                             = file($_FILES['list']['tmp_name']);
     $label                            = $_REQUEST['label'];
     foreach($data as $url){
+      $url                            = trim($url);
       $name                           = $this->path . md5($url);
       $context                        = stream_context_create([
         'http'                        => [
