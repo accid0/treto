@@ -119,6 +119,7 @@ class File {
       $raw                            = '';
       while($data = fread($sock, 1024)){
         $raw                          .= $data;
+        break;
       }
       var_dump($req, $raw);
       //$url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
