@@ -102,10 +102,19 @@ class File {
           'protocol_version'          => '1.1',
         ]  
         ]);
-      $url                            = preg_replace('@^https?://(?:www\.)?@i', '', $url);
-      $url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
-      var_dump(gethostbynamel('treto.ru'), $url);
-      $raw                            = file_get_contents('http://91.228.154.101');
+      if(!preg_match('@^https?://((?:www\.)?[^/]+)@i', $url, $match)){
+        continue;
+      }
+      $host                           = $match[1];
+      $url                            = str_ireplace($match[0], '', $url);
+      $ip                             = gethostbyname($host);
+      $sock                           = stream_socket_client('tcp://' . $ip, $err, $errno, 5);
+      $req                            = "HEAD $url HTTP/1.1\r\n\r\n";
+      fwrite($sock, $req);
+      $raw                            = fread($sock);
+
+      //$url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
+      //$raw                            = file_get_contents('http://91.228.154.101');
       echo strlen($raw), PHP_EOL;
       if(empty($raw)){
         continue;
