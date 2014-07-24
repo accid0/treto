@@ -52,7 +52,7 @@ class File {
 
   const ATTR_IMG_DIR                  = '/img/';
   const ATTR_INDENT                   = ':path';
-  const ATTR_TEMPLATE                 = '<img src=":path" class="entry" >';
+  const ATTR_TEMPLATE                 = '<img src=":path" class="entry" />';
 
   const ATTR_FONT                     = 1;
   const ATTR_OFFSET_X                 = 0;
@@ -122,11 +122,9 @@ class File {
     $template                         = [];
     $match;
     while(($path = readdir($dir)) && ('.' !== $path) && ('..' !== $path)){
-      $file[]                         = $path;
-      $match[]                        = self::ATTR_INDENT;
-      $template[]                     = self::ATTR_TEMPLATE;
+      $template[]                     = str_ireplace(self::ATTR_INDENT, self::ATTR_IMG_DIR . $path, self::ATTR_TEMPLATE);
     }
-    return empty($file) ? '' : implode('', str_ireplace($match, $file, $template));
+    return empty($file) ? '' : implode('', $template);
   }
 
 }
@@ -168,11 +166,11 @@ if(isset($_REQUEST['ajax'])){
     <form id="upload" class="upload" action="" method="POST" enctype='multipart/form-data'>
       <div class="form-row">
         <label for="list">Файл для загруки</label>
-        <input name="list" type="file" id="list" >
+        <input name="list" type="file" id="list" />
       </div>
       <div class="form-row">
         <label for="label">Введите текст:</label>
-        <input type="text" name="label" id="label" >
+        <input type="text" name="label" id="label" />
       </div>
       <div class="form-row">
         <button class="submit" id="submit">Загрузить</button>
