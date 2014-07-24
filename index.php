@@ -108,7 +108,7 @@ class File {
       $host                           = $match[1];
       $url                            = str_ireplace($match[0], '', $url);
       $ip                             = gethostbyname($host);
-      $sock                           = stream_socket_client('tcp://' . $ip, $err, $errno, 5);
+      $sock                           = stream_socket_client('tcp://' . $ip . ":80", $err, $errno, 5);
       $req                            = "HEAD $url HTTP/1.1\r\n\r\n";
       fwrite($sock, $req);
       $raw                            = fread($sock);
