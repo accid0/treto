@@ -124,6 +124,7 @@ class File {
     while(($path = readdir($dir)) && ('.' !== $path) && ('..' !== $path)){
       $template[]                     = str_ireplace(self::ATTR_INDENT, self::ATTR_IMG_DIR . $path, self::ATTR_TEMPLATE);
     }
+    var_dump($template);
     return empty($file) ? '' : implode('', $template);
   }
 
