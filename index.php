@@ -98,13 +98,9 @@ class File {
     foreach($data as $url){
       $url                            = trim($url);
       $name                           = $this->path . md5($url);
-      $raw                            = file_get_contents($url);
-      echo strlen($raw), PHP_EOL;
-      continue;
-      if(empty($raw)){
-        continue;
-      }
-      $src                            = @imagecreatefromstring($raw);
+      $src                            = imagecreatefromstring($url);
+      var_dump($src);
+
       if(!$src){
         continue;
       }
