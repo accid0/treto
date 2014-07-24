@@ -111,6 +111,7 @@ class File {
         self::ATTR_RGB_BLUE
       );
       imagestring($src, self::ATTR_FONT, self::ATTR_OFFSET_X, self::ATTR_OFFSET_Y, $label, $color);
+      echo $name, PHP_EOL;
       imagejpeg($src, $name, self::ATTR_QUALITY);
       imagedestroy($src);
     }
@@ -120,7 +121,6 @@ class File {
     $dir                              = opendir($this->path);
     $template                         = [];
     while(($path = readdir($dir)) && ('.' !== $path) && ('..' !== $path)){
-      echo $path, PHP_EOL;
       $template[]                     = str_ireplace(self::ATTR_INDENT, self::ATTR_IMG_DIR . $path, self::ATTR_TEMPLATE);
     }
     return empty($file) ? '' : implode('', $template);
