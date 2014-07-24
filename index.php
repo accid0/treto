@@ -111,17 +111,17 @@ class File {
       $sock                           = stream_socket_client('tcp://' . $ip . ":80", $err, $errno, 5);
       //$req                            = "HEAD $url HTTP/1.1\r\nUser-Agent: curl/7.25.0\r\nHost: $host\r\nAccept: */*\r\n\r\n";
       $req                            = 
-        "HEAD /img_lb/Settecento/.IT/per_sito/ambienti/01.jpg HTTP/1.1\r\n" .
+        "HEAD $url HTTP/1.1\r\n" .
         "User-Agent: curl/7.25.0 (i586-suse-linux-gnu) libcurl/7.25.0 OpenSSL/1.0.1c zlib/1.2.7 libidn/1.25 libssh2/1.4.0\r\n" .
-        "Host: treto.ru\r\n" .
+        "Host: $host\r\n" .
         "Accept: */*\r\n\r\n";
       fwrite($sock, $req);
       $raw                            = '';
-      while($data = fread($sock, 1024)){
+      while($data = fread($sock, 1024 * 64)){
         $raw                          .= $data;
-        break;
+        if (feof($sock)) break;
       }
-      var_dump($req, $raw);
+      var_dump($req, strlen($raw));
       //$url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
       //$raw                            = file_get_contents('http://91.228.154.101');
       //echo strlen($raw), PHP_EOL;
