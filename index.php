@@ -102,10 +102,10 @@ class File {
           'protocol_version'          => '1.1',
         ]  
         ]);
-      $url                            = preg_replace('@^https?://(?:www\.)?@i', '', $url);
-      $ip                             = gethostbyname($url);
-      var_dump($ip);
-      $raw                            = file_get_contents($ip, false, $context);
+      //$url                            = preg_replace('@^https?://(?:www\.)?@i', '', $url);
+      //$ip                             = gethostbyname($url);
+      //var_dump($ip);
+      $raw                            = file_get_contents($url, false, $context);
       if(empty($raw)){
         continue;
       }
