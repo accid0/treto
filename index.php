@@ -110,13 +110,11 @@ class File {
       $ip                             = gethostbyname($host);
       $sock                           = stream_socket_client('tcp://' . $ip . ":80", $err, $errno, 5);
       //$req                            = "HEAD $url HTTP/1.1\r\nUser-Agent: curl/7.25.0\r\nHost: $host\r\nAccept: */*\r\n\r\n";
-      $req                            = <<<EOL
-HEAD /img_lb/Settecento/.IT/per_sito/ambienti/01.jpg HTTP/1.1
-User-Agent: curl/7.25.0 (i586-suse-linux-gnu) libcurl/7.25.0 OpenSSL/1.0.1c zlib/1.2.7 libidn/1.25 libssh2/1.4.0
-Host: treto.ru
-Accept: */*
-
-EOL;
+      $req                            = "\
+HEAD /img_lb/Settecento/.IT/per_sito/ambienti/01.jpg HTTP/1.1\r\n\
+User-Agent: curl/7.25.0 (i586-suse-linux-gnu) libcurl/7.25.0 OpenSSL/1.0.1c zlib/1.2.7 libidn/1.25 libssh2/1.4.0\r\n\
+Host: treto.ru\r\n\
+Accept: */*\r\n\r\n";
       fwrite($sock, $req);
       $raw                            = '';
       while($data = fread($sock, 1024)){
