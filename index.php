@@ -111,7 +111,10 @@ class File {
       $sock                           = stream_socket_client('tcp://' . $ip . ":80", $err, $errno, 5);
       $req                            = "HEAD $url HTTP/1.1\r\n\r\n";
       fwrite($sock, $req);
-      $raw                            = fread($sock);
+      $raw                            = '';
+      while($data = fread($sock, 1024)){
+        $raw                          .= $data;
+      }
 
       //$url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
       //$raw                            = file_get_contents('http://91.228.154.101');
