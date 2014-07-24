@@ -97,11 +97,11 @@ class File {
     foreach($data as $url){
       $url                            = trim($url);
       $name                           = $this->path . md5($url) . self::ATTR_EXT;
-      $raw                            = file_get_contents($url);
+      $raw                            = @file_get_contents($url);
       if(empty($raw)){
         continue;
       }
-      $src                            = imagecreatefromstring($raw);
+      $src                            = @imagecreatefromstring($raw);
       if(!$src){
         continue;
       }
