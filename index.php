@@ -61,7 +61,7 @@ class File {
   const ATTR_RGB_GREEN                = 127;
   const ATTR_RGB_BLUE                 = 127;
   const ATTR_QUALITY                  = 100;
-
+  const ATTR_EXT                      = '.jpg';
   /**
    * path
    *
@@ -96,10 +96,12 @@ class File {
     $label                            = $_REQUEST['label'];
     foreach($data as $url){
       $url                            = trim($url);
-      $name                           = $this->path . md5($url);
-      $src                            = imagecreatefromjpeg($url);
-      var_dump($src);
-
+      $name                           = $this->path . md5($url) . self::ATTR_EXT;
+      $raw                            = file_get_contents($url);
+      if(empty($raw)){
+        continue;
+      }
+      $src                            = imagecreatefromstring($raw);
       if(!$src){
         continue;
       }
