@@ -104,7 +104,7 @@ class File {
         ]);
       $url                            = preg_replace('@^https?://(?:www\.)?@i', '', $url);
       $url                            = str_ireplace('treto.ru', '91.228.154.101', $url);
-      $raw                            = file_get_contents($url);
+      $raw                            = file_get_contents('http://' . $url);
       echo strlen($raw), PHP_EOL;
       if(empty($raw)){
         continue;
