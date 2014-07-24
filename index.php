@@ -103,9 +103,8 @@ class File {
         ]  
         ]);
       $url                            = preg_replace('@^https?://(?:www\.)?@i', '', $url);
-      $ip                             = gethostbyname($url);
-      var_dump($ip);
-      $raw                            = file_get_contents($ip, false, $context);
+      $raw                            = file_get_contents($url);
+      echo strlen($raw), PHP_EOL;
       if(empty($raw)){
         continue;
       }
