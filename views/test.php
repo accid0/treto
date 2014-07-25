@@ -93,12 +93,12 @@ class TestView extends View {
         $img                          = Array.prototype.slice.call($img);
         width                         = $img.reduce(function(acc, item){
           if(!item.offsetWidth) return acc;
-          return acc + item.offsetWidth;
+          return acc + parseInt(item.getAttribute('img-width'));
         }, 0);
         last                          = 100;
         $img.map(function(item, index){
           if(!item.offsetWidth) return;
-          var w                       = 100 * item.offsetWidth / width;
+          var w                       = 100 * parseInt(item.getAttribute('img-width')) / width;
           if(index === ($img.length -1)){
             item.style.width          = last + '%';
           }

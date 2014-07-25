@@ -9,7 +9,8 @@ include_once('views/view.php');
 class ImageModel extends Model {
   const ATTR_IMG_DIR                  = '/img/';
   const ATTR_INDENT                   = ':path';
-  const ATTR_TEMPLATE                 = '<div class="entry"><img src=":path"/></div>';
+  const ATTR_WIDTH                    = ':width';
+  const ATTR_TEMPLATE                 = '<div class="entry" img-width=":width"><img src=":path"/></div>';
   const ATTR_ROW                      = ':row';
   const ATTR_CONTAINER                = '<div class="inner-row">:row</div>';
 
@@ -57,9 +58,16 @@ class ImageModel extends Model {
         $template[]                   = [];
         $current                      = &$template[count($template) - 1];
       }
+      list($width, $height)           = getimagesize($this->path . $path);
       $current[]                      = str_ireplace(
-        self::ATTR_INDENT,
-        self::ATTR_IMG_DIR . $path,
+        [
+          self::ATTR_INDENT,
+          self::ATTR_WIDTH
+        ],
+        [ 
+          self::ATTR_IMG_DIR . $path,
+          $width,
+        ],
         self::ATTR_TEMPLATE);
     }
     $row                              = [];
