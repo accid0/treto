@@ -48,8 +48,30 @@ class TestView extends View {
     background-color: rgba(29, 10, 10, 0.61);
   }
   </style>
+  </head>
+  <body>
+    <form id="upload" class="upload" action="" method="POST" enctype='multipart/form-data'>
+      <div class="form-row">
+        <label for="list">Файл для загруки</label>
+        <input name="list" type="file" id="list" />
+      </div>
+      <div class="form-row">
+        <label for="label">Введите текст:</label>
+        <input type="text" name="label" id="label" />
+      </div>
+      <div class="form-row">
+        <button class="submit" id="submit">Загрузить</button>
+      </div>
+    </form>
+      <div class="wrapper">
+      <div class="content" id="content">
+        <?php echo $this->data?>
+      </div>
+      <div class="modal"></div>
+    </div>
+  </body>
   <script type="text/javascript">
-  window.onload                     = function(){
+  document.body.onload                = function(){
     var $                             = document.querySelectorAll.bind(document),
         $content                      = $('#content')[0],
         $submit                       = $('#submit')[0],
@@ -57,12 +79,6 @@ class TestView extends View {
         $modal                        = $('.modal')[0],
         list;
 
-    $content.onchange                   = function(event){
-      console.log(event)
-    }
-    $content.onload                   = function(event){
-      console.log(event)
-    }
     $submit.onclick                   = function(event){
       var data,
           req                         = new XMLHttpRequest();
@@ -121,28 +137,6 @@ class TestView extends View {
     
   };
   </script>
-  </head>
-  <body>
-    <form id="upload" class="upload" action="" method="POST" enctype='multipart/form-data'>
-      <div class="form-row">
-        <label for="list">Файл для загруки</label>
-        <input name="list" type="file" id="list" />
-      </div>
-      <div class="form-row">
-        <label for="label">Введите текст:</label>
-        <input type="text" name="label" id="label" />
-      </div>
-      <div class="form-row">
-        <button class="submit" id="submit">Загрузить</button>
-      </div>
-    </form>
-      <div class="wrapper">
-      <div class="content" id="content">
-        <?php echo $this->data?>
-      </div>
-      <div class="modal"></div>
-    </div>
-  </body>
 </html>
 <?php
   }
