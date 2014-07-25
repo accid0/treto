@@ -50,6 +50,16 @@ class TestView extends View {
   </style>
   </head>
   <script type="text/javascript">
+  (function(){
+    var tId                           = setInterval(function() {
+      if (document.readyState == "complete") onComplete()
+    }, 17);
+  
+    function onComplete(){
+      clearInterval(tId);    
+      init();
+    };
+  })();
   function init(){
     var $                             = document.querySelectorAll.bind(document),
         $content                      = $('#content')[0],
@@ -116,7 +126,7 @@ class TestView extends View {
     
   };
   </script>
-  <body onload='init()'>
+  <body>
     <form id="upload" class="upload" action="" method="POST" enctype='multipart/form-data'>
       <div class="form-row">
         <label for="list">Файл для загруки</label>
@@ -137,11 +147,6 @@ class TestView extends View {
       <div class="modal"></div>
     </div>
   </body>
-  <script type="text/javascript">
-  if(document.body){
-    document.body.onload              = init;
-  }
-  </script>
 </html>
 <?php
   }
