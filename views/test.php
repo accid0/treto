@@ -52,7 +52,7 @@ class TestView extends View {
   <script type="text/javascript">
   (function(){
     var tId                           = setInterval(function() {
-      if (document.readyState == "complete") onComplete()
+      if (document.readyState == "interactive") onComplete()
     }, 17);
   
     function onComplete(){
