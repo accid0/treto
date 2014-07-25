@@ -45,6 +45,7 @@ class TestView extends View {
     background-image: url(assets/img/loader.gif);
     position: fixed;
     top: 0;
+    left: 0;
     background-repeat: no-repeat;
     background-position: 50%;
     background-color: rgba(29, 10, 10, 0.41);
