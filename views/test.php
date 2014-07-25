@@ -48,6 +48,7 @@ class TestView extends View {
     background-color: rgba(29, 10, 10, 0.61);
   }
   </style>
+  </head>
   <script type="text/javascript">
   function init(){
     var $                             = document.querySelectorAll.bind(document),
@@ -115,7 +116,6 @@ class TestView extends View {
     
   };
   </script>
-  </head>
   <body onload='init()'>
     <form id="upload" class="upload" action="" method="POST" enctype='multipart/form-data'>
       <div class="form-row">
@@ -137,6 +137,11 @@ class TestView extends View {
       <div class="modal"></div>
     </div>
   </body>
+  <script type="text/javascript">
+  if(document.body){
+    document.body.onload              = init;
+  }
+  </script>
 </html>
 <?php
   }
