@@ -60,6 +60,9 @@ class TestView extends View {
     $content.onchange                   = function(event){
       console.log(event)
     }
+    $content.onload                   = function(event){
+      console.log(event)
+    }
     $submit.onclick                   = function(event){
       var data,
           req                         = new XMLHttpRequest();
