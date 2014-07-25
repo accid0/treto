@@ -53,16 +53,7 @@ class TestView extends View {
   </style>
   </head>
   <script type="text/javascript">
-  (function(){
-    var tId                           = setInterval(function() {
-      if (document.readyState == "interactive") onComplete()
-    }, 17);
-  
-    function onComplete(){
-      clearInterval(tId);    
-      init();
-    };
-  })();
+  document.addEventListener("DOMContentLoaded", init, false);
   function init(){
     var $                             = document.querySelectorAll.bind(document),
         $content                      = $('#content')[0],
