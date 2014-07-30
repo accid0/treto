@@ -10,7 +10,8 @@ class ImageModel extends Model {
   const ATTR_IMG_DIR                  = '/img/';
   const ATTR_INDENT                   = ':path';
   const ATTR_WIDTH                    = ':width';
-  const ATTR_TEMPLATE                 = '<div class="entry" img-width=":width"><img src=":path"/></div>';
+  const ATTR_HEIGHT                   = ':height';
+  const ATTR_TEMPLATE                 = '<div class="entry" img-width=":width" img-height=":height"><img src=":path"/></div>';
   const ATTR_ROW                      = ':row';
   const ATTR_CONTAINER                = '<div class="inner-row">:row</div>';
 
@@ -62,11 +63,13 @@ class ImageModel extends Model {
       $current[]                      = str_ireplace(
         [
           self::ATTR_INDENT,
-          self::ATTR_WIDTH
+          self::ATTR_WIDTH,
+          self::ATTR_HEIGHT,
         ],
         [ 
           self::ATTR_IMG_DIR . $path,
           $width,
+          $height,
         ],
         self::ATTR_TEMPLATE);
     }

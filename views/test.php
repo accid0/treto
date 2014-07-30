@@ -31,9 +31,9 @@ class TestView extends View {
     display: inline-block;
     padding: 2px;
     box-sizing: border-box;
+    overflow: hidden;
   }
   .content .inner-row .entry img {
-    height: 100%;
   }
   .modal {
     display: none;
@@ -85,7 +85,7 @@ class TestView extends View {
       var $row                        = this.$el.querySelectorAll('.inner-row'),
           _this                       = this;
       $row                            = Array.prototype.slice.call($row);
-        $row.map(function(item){
+      $row.map(function(item){
         if(!item.querySelectorAll) return;
         var $img                      = item.querySelectorAll('.entry'),
           width, last;
@@ -97,14 +97,18 @@ class TestView extends View {
         last                          = 100;
         $img.map(function(item, index){
           if(!item.offsetWidth) return;
-          var w                       = 100 * parseInt(item.getAttribute('img-width')) / width;
+          var iw                      = parseInt(item.getAttribute('img-width')),
+              ih                      = parseInt(item.getAttribute('img-height')),
+              h                       = item.offsetHeight,
+              w                       = 100 * iw / width;
           if(index === ($img.length -1)){
             item.style.width          = last + '%';
           }
           else{
             item.style.width          = w + '%';
           }
-          item.childNodes[0].style.width = '100%';
+          item.childNodes[0].style.marginLeft = (w * _this.row_width/100 - iw)/2 + 'px';
+          item.childNodes[0].style.marginTop = (h - ih)/2 + 'px';
           last                        -= w;
         });
       });
